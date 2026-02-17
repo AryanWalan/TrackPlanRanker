@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>TrackPlanRanker</title>
+</head>
+<body>
+  <h1>TrackPlanRanker</h1>
+
+  <form method="POST">
+    <label for="event">Select your event:</label>
+    <select name="event" id="event" required>
+      {% for e in events %}
+        <option value="{{ e }}" {% if e == selected_event %}selected{% endif %}>
+          {{ e }}
+        </option>
+      {% endfor %}
+    </select>
+
+    <button type="submit">Continue</button>
+  </form>
+
+  {% if errors %}
+    <ul style="color: red;">
+      {% for err in errors %}
+        <li>{{ err }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+</body>
+</html>
