@@ -6,25 +6,48 @@
 <body>
   <h1>TrackPlanRanker</h1>
 
-  <form method="POST">
-    <label for="event">Select your event:</label>
-    <select name="event" id="event" required>
-      {% for e in events %}
-        <option value="{{ e }}" {% if e == selected_event %}selected{% endif %}>
-          {{ e }}
-        </option>
-      {% endfor %}
-    </select>
+<form method="POST">
+  <label for="event">Select your event:</label>
+  <select name="event" id="event" required>
+    {% for e in events %}
+      <option value="{{ e }}" {% if e == selected_event %}selected{% endif %}>{{ e }}</option>
+    {% endfor %}
+  </select>
 
-    <button type="submit">Continue</button>
-  </form>
+  <h3>Weekly Track Schedule</h3>
+
+  <label for="mon">Monday</label><br>
+  <textarea id="mon" name="mon" rows="2" cols="60" placeholder="e.g. 3x30m blocks, 3x60m full recovery">{{ schedule.mon if schedule else "" }}</textarea><br><br>
+
+  <label for="tue">Tuesday</label><br>
+  <textarea id="tue" name="tue" rows="2" cols="60" placeholder="e.g. gym: squats, cleans, RDL">{{ schedule.tue if schedule else "" }}</textarea><br><br>
+
+  <label for="wed">Wednesday</label><br>
+  <textarea id="wed" name="wed" rows="2" cols="60">{{ schedule.wed if schedule else "" }}</textarea><br><br>
+
+  <label for="thu">Thursday</label><br>
+  <textarea id="thu" name="thu" rows="2" cols="60">{{ schedule.thu if schedule else "" }}</textarea><br><br>
+
+  <label for="fri">Friday</label><br>
+  <textarea id="fri" name="fri" rows="2" cols="60">{{ schedule.fri if schedule else "" }}</textarea><br><br>
+
+  <label for="sat">Saturday</label><br>
+  <textarea id="sat" name="sat" rows="2" cols="60">{{ schedule.sat if schedule else "" }}</textarea><br><br>
+
+  <label for="sun">Sunday</label><br>
+  <textarea id="sun" name="sun" rows="2" cols="60">{{ schedule.sun if schedule else "" }}</textarea><br><br>
+
+  <button type="submit">Submit Plan</button>
 
   {% if errors %}
-    <ul style="color: red;">
+    <ul style="color:red;">
       {% for err in errors %}
         <li>{{ err }}</li>
       {% endfor %}
     </ul>
   {% endif %}
-</body>
-</html>
+
+  {% if success_message %}
+    <p style="color:green;">{{ success_message }}</p>
+  {% endif %}
+</form>

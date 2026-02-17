@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-from MainController import AllowedEvents, validate_event  # import your logic
+from MainController import AllowedEvents, validate_event  
 
 app = Flask(__name__)
 
