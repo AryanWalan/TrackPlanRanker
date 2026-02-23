@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-from MainController import AllowedEvents, validate_event  
+from MainController import AllowedEvents, validate_event, schedule_to_text, generate_ai_feedback
 
 app = Flask(__name__)
 
@@ -9,6 +9,7 @@ def home():
     selected_event = None
     success_message = None
     schedule = None
+    feedback = None
 
     if request.method == "POST":
         selected_event = request.form.get("event", "")
@@ -28,6 +29,8 @@ def home():
             errors.append("Please enter at least one day of training.")
 
         if not errors:
+            plan_text = schedule_to_text(schedule)
+            feedback = generate_ai_feedback(selected_event, plan_text)
             success_message = f"Event '{selected_event}' accepted. Plan received!"
 
     return render_template(
@@ -36,7 +39,8 @@ def home():
         errors=errors,
         selected_event=selected_event,
         schedule=schedule,
-        success_message=success_message
+        success_message=success_message,
+        feedback=feedback
     )
 
 if __name__ == "__main__":

@@ -36,6 +36,7 @@ It’s here to support athletes.
 ### 1. Install Dependencies
 ```bash
 python -m pip install flask
+pip install openai
 ```
 
 ### 2. Run the App
@@ -44,7 +45,7 @@ python app.py
 ```
 
 ### 3. Open in Browser
-```bash
+
 Follow the development server link shown in the terminal
-```
+
 

@@ -47,6 +47,13 @@
     </ul>
   {% endif %}
 
+  {% if feedback %}
+  <h3>AI Feedback</h3>
+  <pre style="white-space: pre-wrap; border: 1px solid #ccc; padding: 10px;">
+{{ feedback }}
+  </pre>
+{% endif %}
+
   {% if success_message %}
     <p style="color:green;">{{ success_message }}</p>
   {% endif %}
